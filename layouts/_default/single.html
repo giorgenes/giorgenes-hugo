@@ -1,0 +1,74 @@
+{{ define "main" }}
+
+{{/* ── Post Hero ───────────────────────────────────── */}}
+<section class="post-hero">
+  <div class="post-hero__inner">
+    <div class="post-hero__tags">
+      {{ range .Params.tags }}<span class="chip chip--brand">{{ . }}</span>{{ end }}
+    </div>
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.subtitle }}<p class="post-hero__excerpt">{{ . }}</p>{{ end }}
+    <hr class="post-hero__divider" />
+    <div class="post-hero__meta">
+      <div class="post-hero__author">
+        <span class="post-hero__avatar"></span>
+        <span>{{ site.Params.author }}</span>
+      </div>
+      <span class="meta-dot"></span>
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+      <span class="meta-dot"></span>
+      <span>{{ .ReadingTime }} min read</span>
+    </div>
+  </div>
+</section>
+
+{{/* ── Article Body ─────────────────────────────────── */}}
+<section class="section section--base">
+  <div class="section__inner">
+    <div class="article-col">
+
+      {{/* Table of Contents */}}
+      {{ if .TableOfContents }}
+      <nav class="toc">
+        <p class="label">TABLE OF CONTENTS</p>
+        {{ .TableOfContents }}
+      </nav>
+      {{ end }}
+
+      {{/* Content */}}
+      <div class="prose">
+        {{ .Content }}
+      </div>
+
+      {{/* Backlinks */}}
+      {{ if .Params.backlinks }}
+      <div class="backlinks">
+        <hr class="backlinks__divider" />
+        <p class="label">REFERENCED IN</p>
+        <div class="cards-grid cards-grid--sm">
+          {{ range .Params.backlinks }}
+          {{ $page := $.Site.GetPage . }}
+          {{ if $page }}
+          <a href="{{ $page.RelPermalink }}" class="post-card post-card--sm">
+            <div class="post-card__tags">
+              {{ range first 1 $page.Params.tags }}<span class="chip chip--brand">{{ . }}</span>{{ end }}
+            </div>
+            <h4>{{ $page.Title }}</h4>
+            <p>{{ $page.Summary }}</p>
+          </a>
+          {{ end }}
+          {{ end }}
+        </div>
+      </div>
+      {{ end }}
+
+      {{/* Back to Blog */}}
+      <div class="post-nav">
+        <a href="/posts/" class="link-arrow link-arrow--back">← Back to Blog</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{{ end }}

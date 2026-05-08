@@ -1,0 +1,139 @@
+{{ define "main" }}
+
+{{/* ── Hero ───────────────────────────────────────────── */}}
+<section class="hero">
+  <div class="hero__inner">
+    <span class="badge badge--brand">
+      <span class="badge__dot"></span>
+      Available for new projects
+    </span>
+    <h1 class="hero__heading">I help founders<br>bring ideas to life.</h1>
+    <p class="hero__sub">
+      Polymath software engineer &amp; designer. I turn complex problems into
+      elegant, shippable products — fast.
+    </p>
+    <div class="cta-group">
+      <a href="/posts/" class="btn btn--accent btn--lg">See my work</a>
+      <a href="/posts/" class="btn btn--ghost btn--lg">Read the blog →</a>
+    </div>
+  </div>
+</section>
+
+{{/* ── Services ─────────────────────────────────────── */}}
+<section class="section section--base" id="services">
+  <div class="section__inner">
+    <div class="section__heading">
+      <p class="label">WHAT I DO</p>
+      <h2>From idea to live product.</h2>
+    </div>
+    <div class="cards-grid">
+      <div class="service-card">
+        <div class="service-card__icon"></div>
+        <div>
+          <h3>Product Engineering</h3>
+          <p>Full-stack development with a product mindset. I build scalable web apps, APIs, and internal tools that ship fast and scale further.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-card__icon"></div>
+        <div>
+          <h3>Product Design</h3>
+          <p>From wireframes to high-fidelity prototypes. I design interfaces that feel intuitive to users and make sense to developers.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-card__icon"></div>
+        <div>
+          <h3>Technical Advisory</h3>
+          <p>Architecture reviews, tech stack decisions, and early-stage team mentoring. I help founders avoid expensive mistakes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{/* ── Experiments ──────────────────────────────────── */}}
+{{ $experiments := where (where .Site.RegularPages "Section" "posts") "Params.tags" "intersect" (slice "experiments") | first 3 }}
+{{ if $experiments }}
+<section class="section section--subtle" id="experiments">
+  <div class="section__inner">
+    <div class="section__header-row">
+      <div class="section__heading">
+        <p class="label">EXPERIMENTS</p>
+        <h2>Things I built &amp; shipped.</h2>
+      </div>
+      <a href="/posts/?tag=experiments" class="link-arrow">View all experiments →</a>
+    </div>
+    <div class="cards-grid">
+      {{ range $experiments }}
+      <article class="post-card post-card--image">
+        <div class="post-card__image">
+          {{ with .Params.image }}<img src="{{ . }}" alt="{{ $.Title }}" loading="lazy" />{{ end }}
+          <span class="post-card__image-placeholder">Screenshot / Demo</span>
+        </div>
+        <div class="post-card__body">
+          <div class="post-card__tags">
+            {{ range .Params.tags }}<span class="chip chip--accent">{{ . }}</span>{{ end }}
+          </div>
+          <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+          <p>{{ .Summary }}</p>
+          <a href="{{ .RelPermalink }}" class="link-arrow link-arrow--brand">Read more →</a>
+        </div>
+      </article>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* ── Writing ──────────────────────────────────────── */}}
+{{ $posts := where .Site.RegularPages "Section" "posts" | first 3 }}
+{{ if $posts }}
+<section class="section section--base" id="writing">
+  <div class="section__inner">
+    <div class="section__header-row">
+      <div class="section__heading">
+        <p class="label">WRITING</p>
+        <h2>Short thoughts, sharp ideas.</h2>
+      </div>
+      <a href="/posts/" class="link-arrow">Read all posts →</a>
+    </div>
+    <div class="post-list">
+      {{ range $posts }}
+      <a href="{{ .RelPermalink }}" class="post-row">
+        <div class="post-row__meta">
+          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+          {{ range first 1 .Params.tags }}<span class="chip chip--brand">{{ . }}</span>{{ end }}
+        </div>
+        <div class="post-row__content">
+          <h3>{{ .Title }}</h3>
+          <p>{{ .Summary }}</p>
+        </div>
+        <span class="post-row__read">{{ .ReadingTime }} min read →</span>
+      </a>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* ── About ────────────────────────────────────────── */}}
+<section class="section section--inverse" id="about">
+  <div class="section__inner about">
+    <div class="about__photo">
+      <span>Photo of Giorgenes</span>
+    </div>
+    <div class="about__bio">
+      <p class="label">ABOUT ME</p>
+      <h2>Building at the intersection of code and design.</h2>
+      <p>I'm Giorgenes — a polymath software engineer and designer. I've shipped products across fintech, SaaS, and consumer apps. I work with early-stage founders to take ideas from zero to production, handling both the technical and design side so you don't have to hire two people.</p>
+      <div class="about__social">
+        <a href="{{ site.Params.linkedin }}" target="_blank" rel="noopener" class="btn btn--ghost-inverse">↗ LinkedIn</a>
+        <a href="{{ site.Params.github }}"   target="_blank" rel="noopener" class="btn btn--ghost-inverse">↗ GitHub</a>
+      </div>
+      <a href="mailto:giorgenes@gmail.com" class="btn btn--accent btn--lg">Let's work together →</a>
+    </div>
+  </div>
+</section>
+
+{{ end }}

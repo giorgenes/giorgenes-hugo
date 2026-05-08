@@ -1,0 +1,11 @@
+<header class="navbar">
+  <div class="navbar__inner">
+    <a href="/" class="navbar__logo">{{ site.Title }}</a>
+    <nav class="navbar__links">
+      <a href="/posts/" class="navbar__link {{ if hasPrefix .RelPermalink "/posts" }}navbar__link--active{{ end }}">Blog</a>
+      <a href="/posts/?tag=experiments" class="navbar__link {{ if and (hasPrefix .RelPermalink "/posts") (in .Params.tags "experiments") }}navbar__link--active{{ end }}">Experiments</a>
+      <a href="/#about" class="navbar__link">About</a>
+    </nav>
+    <a href="/#about" class="btn btn--accent">Work with me</a>
+  </div>
+</header>

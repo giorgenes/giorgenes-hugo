@@ -1,0 +1,20 @@
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__left">
+      <a href="/" class="footer__logo">{{ site.Title }}</a>
+      <p class="footer__tagline">{{ site.Params.tagline }}</p>
+    </div>
+    <nav class="footer__nav">
+      <a href="/posts/">Blog</a>
+      <a href="/posts/?tag=experiments">Experiments</a>
+      <a href="/#about">About</a>
+    </nav>
+    <div class="footer__right">
+      <div class="footer__social">
+        <a href="{{ site.Params.linkedin }}" target="_blank" rel="noopener">↗ LinkedIn</a>
+        <a href="{{ site.Params.github }}" target="_blank" rel="noopener">↗ GitHub</a>
+      </div>
+      <p class="footer__copy">© {{ now.Year }} {{ site.Params.author }}. Built with Hugo.</p>
+    </div>
+  </div>
+</footer>

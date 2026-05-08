@@ -1,0 +1,44 @@
+baseURL = 'https://giorgenes.github.io/'
+locale = 'en-us'
+title = 'Giorgenes'
+enableRobotsTXT = true
+enableEmoji = true
+
+[params]
+  description = "Polymath software engineer & designer. I help founders bring their ideas to life."
+  author      = "Giorgenes"
+  tagline     = "Polymath software engineer & designer."
+  linkedin    = "https://linkedin.com/in/giorgenes"
+  github      = "https://github.com/giorgenes"
+
+[markup]
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel   = 3
+    ordered    = false
+  [markup.highlight]
+    style       = "dracula"
+    lineNos     = false
+    tabWidth    = 2
+    guessSyntax = true
+    noClasses   = false
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[outputs]
+  home    = ["HTML", "JSON"]
+  page    = ["HTML"]
+  section = ["HTML"]
+
+[outputFormats]
+  [outputFormats.JSON]
+    mediaType   = "application/json"
+    baseName    = "index"
+    isPlainText = true
+
+[taxonomies]
+  tag = "tags"
+
+[pagination]
+  pagerSize = 10
