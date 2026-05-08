@@ -107,7 +107,7 @@
         </div>
         <div class="post-row__content">
           <h3>{{ .Title }}</h3>
-          <p>{{ .Summary }}</p>
+          {{ with .Params.subtitle }}<p>{{ . }}</p>{{ end }}
         </div>
         <span class="post-row__read">{{ .ReadingTime }} min read →</span>
       </a>
