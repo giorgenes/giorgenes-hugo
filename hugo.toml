@@ -1,4 +1,4 @@
-baseURL = 'https://giorgenes.github.io/'
+baseURL = 'https://giorgenes.github.io/giorgenes-hugo/'
 locale = 'en-us'
 title = 'Giorgenes'
 enableRobotsTXT = true
